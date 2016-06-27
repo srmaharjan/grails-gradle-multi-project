@@ -1,0 +1,40 @@
+allprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://repo.grails.org/grails/core" }
+        maven { url "https://repo.grails.org/grails/plugins" }
+        maven { url "http://maven.aspose.com/artifactory/simple/ext-release-local/" }
+    }
+
+}
+buildscript {
+    ext {
+        grailsVersion = project.grailsVersion
+    }
+    repositories {
+        mavenLocal()
+        maven { url "https://repo.grails.org/grails/core" }
+
+    }
+    dependencies {
+        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
+    }
+}
+
+apply plugin: "org.grails.grails-web"
+//apply plugin:"org.grails.grails-gsp"
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+println "$project.projectDir"
+gretty {
+    // supported values:
+    // 'jetty7', 'jetty8', 'jetty9', 'tomcat7', 'tomcat8'
+    servletContainer = 'tomcat8'
+    managedClassReload = true
+//    inplaceMode ='hard'
+    interactiveMode = 'restartOnKeyPress'
+//    fastReload="$project.projectDir"
+}
+
+
+

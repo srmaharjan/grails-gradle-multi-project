@@ -1,0 +1,2 @@
+include ':GPlugin'
+project(':GPlugin').projectDir = new File('../GPlugin')
